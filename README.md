@@ -95,18 +95,23 @@ Here are more result from tensorflow algorithm (from left to right are input, st
 </p>
 
 ## Acknowledgement
-* Our tensorflow implementation basically follows the [torch code](https://github.com/luanfujun/deep-photo-styletransfer)
-* We use martinbenson's [python code](https://github.com/martinbenson/deep-photo-styletransfer/blob/master/deep_photo.py) to compute Matting Laplacian
-* Thanks for the help from VIPA research group of Zhejiang University
+
+* This work was done when Yang Liu was a research intern at *Microsoft Visual Perception Laboratory of Zhejiang University* and *Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies*, under the supervision of [Prof. Mingli Song](http://person.zju.edu.cn/en/msong) and [Yongcheng Jing](http://yongchengjing.com/).
+
+* Our tensorflow implementation basically follows the [torch code](https://github.com/luanfujun/deep-photo-styletransfer).
+
+* We use [martinbenson](https://github.com/martinbenson)'s [python code](https://github.com/martinbenson/deep-photo-styletransfer/blob/master/deep_photo.py) to compute Matting Laplacian.
 
 ## Citation
 If you find this code useful for your research, please cite:
 ```
 @misc{YangPhotoStyle2017,
-  author = {Yang},
+  author = {Yang Liu},
   title = {deep-photo-style-transfer-tf},
+  publisher = {GitHub},
+  organization={Microsoft Visual Perception Laboratory & Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies}
   year = {2017},
-  howpublished = {\url{https://github.com/LouieYang/deep-photo-styletransfer-tf}},
+  howpublished = {\url{https://github.com/LouieYang/deep-photo-styletransfer-tf}}
 }
 ```
 
