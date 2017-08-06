@@ -17,7 +17,7 @@ Additionally, there is no dependency on MATLAB thanks to another [repository](ht
 ### Dependencies
 * [Tensorflow](https://www.tensorflow.org/)
 * [Numpy](www.numpy.org/)
-* [PIL](https://pypi.python.org/pypi/Pillow/)
+* [Pillow](https://pypi.python.org/pypi/Pillow/)
 * [Scipy](https://www.scipy.org/)
 * [PyCUDA](https://pypi.python.org/pypi/pycuda) (used in smooth local affine)
 
