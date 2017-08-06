@@ -24,7 +24,7 @@ Additionally, there is no dependency on MATLAB thanks to another [repository](ht
 ***It is recommended using [Anaconda Python](https://www.continuum.io/anaconda-overview), since you only need to install Tensorflow and PyCUDA manually to setup. The CUDA is optional but recommended***
 
 ### Download the VGG-19 model weights
-The VGG-19 model of tensorflow is adopted from [VGG Tensorflow](https://github.com/machrisaa/tensorflow-vgg) with some modifications on the class interface. The VGG-19 model weights is stored as .npy file and could be download [here](). After downloading, copy the weight file to the **./project/vgg19** directory
+The VGG-19 model of tensorflow is adopted from [VGG Tensorflow](https://github.com/machrisaa/tensorflow-vgg) with some modifications on the class interface. The VGG-19 model weights is stored as .npy file and could be download [here](https://drive.google.com/file/d/0BxvKyd83BJjYY01PYi1XQjB5R0E/view?usp=sharing). After downloading, copy the weight file to the **./project/vgg19** directory
 
 ## Usage
 ### Basic Usage
