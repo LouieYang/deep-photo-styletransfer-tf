@@ -41,7 +41,7 @@ python deep_photostyle.py --content_image_path ./examples/input/in11.png --style
 
 ### Other Options
 
-`--style_option` specify three different ways of transferring styles. `--style_option 0` is to generate segmented intermediate result like torch file **neuralstyle_seg.lua** in torch implementation. `--style_option 1` use this intermediate result to generate final result like torch file **deepmatting_seg.lua**. `--style_option 2` combines these two steps as a one line command to generate final result directly.
+`--style_option` specifies three different ways of transferring styles. `--style_option 0` is to generate segmented intermediate result like torch file **neuralstyle_seg.lua** in torch implementation. `--style_option 1` uses this intermediate result to generate final result like torch file **deepmatting_seg.lua**. `--style_option 2` combines these two steps as a one line command to generate the final result directly.
 
 Run `python deep_photostyle.py --help` to see a list of all options
 
