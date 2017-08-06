@@ -4,7 +4,7 @@ This is a pure Tensorflow implementation of [Deep Photo Styletransfer](https://a
 
 This implementation support [L-BFGS-B](https://www.tensorflow.org/api_docs/python/tf/contrib/opt/ScipyOptimizerInterface) (which is what the original authors used) and [Adam](https://www.tensorflow.org/api_docs/python/tf/train/AdamOptimizer) in case the ScipyOptimizerInterface incompatible when Tensorflow upgrades to higher version.
 
-This implementation may seems a little bit simpler thanks to Tensorflow's [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation)
+This implementation may seem to be a little bit simpler thanks to Tensorflow's [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation)
 
 Additionally, there is no dependency on MATLAB thanks to another [repository](https://github.com/martinbenson/deep-photo-styletransfer/blob/master/deep_photo.py) computing Matting Laplacian Sparse Matrix. Below is example of transferring the photo style to another photograph.
 
@@ -50,7 +50,7 @@ This repository doesn't offer image segmentation script and simply use the segme
 
 
 ## Examples
-Here are more result from tensorflow algorithm (from left to right are input, style, torch results and tensorflow results)
+Here are more results from tensorflow algorithm (from left to right are input, style, torch results and tensorflow results)
 
 <p align="center">
     <img src='examples/input/in6.png' height='140' width='210'/>
@@ -109,7 +109,7 @@ If you find this code useful for your research, please cite:
   author = {Yang Liu},
   title = {deep-photo-style-transfer-tf},
   publisher = {GitHub},
-  organization={Microsoft Visual Perception Laboratory & Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies}
+  organization={Microsoft Visual Perception Laboratory & Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies},
   year = {2017},
   howpublished = {\url{https://github.com/LouieYang/deep-photo-styletransfer-tf}}
 }
