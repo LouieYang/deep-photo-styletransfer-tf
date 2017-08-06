@@ -4,7 +4,7 @@ This is a pure Tensorflow implementation of [Deep Photo Styletransfer](https://a
 
 This implementation support [L-BFGS-B](https://www.tensorflow.org/api_docs/python/tf/contrib/opt/ScipyOptimizerInterface) (which is what the original authors used) and [Adam](https://www.tensorflow.org/api_docs/python/tf/train/AdamOptimizer) in case the ScipyOptimizerInterface incompatible when Tensorflow upgrade to higher version.
 
-This implementation may seems a lot simpler thanks to Tensorflow's [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation)
+This implementation may seems a little bit simpler thanks to Tensorflow's [automatic differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation)
 
 Additionally, there is no dependency on MATLAB thanks to another [repository](https://github.com/martinbenson/deep-photo-styletransfer/blob/master/deep_photo.py) compute Matting Laplacian Sparse Matrix. Below is example of transferring the photo style to another photograph.
 
