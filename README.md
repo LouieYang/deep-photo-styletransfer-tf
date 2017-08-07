@@ -19,7 +19,7 @@ Additionally, there is no dependency on MATLAB thanks to another [repository](ht
 * [Numpy](www.numpy.org/)
 * [Pillow](https://pypi.python.org/pypi/Pillow/)
 * [Scipy](https://www.scipy.org/)
-* [PyCUDA](https://pypi.python.org/pypi/pycuda) (used in smooth local affine)
+* [PyCUDA](https://pypi.python.org/pypi/pycuda) (used in smooth local affine, tested on CUDA 8.0)
 
 ***It is recommended to use [Anaconda Python](https://www.continuum.io/anaconda-overview), since you only need to install Tensorflow and PyCUDA manually to setup. The CUDA is optional but really recommended***
 
