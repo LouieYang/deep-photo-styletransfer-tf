@@ -13,6 +13,9 @@ Additionally, there is no dependency on MATLAB thanks to another [repository](ht
     <img src="./examples/readme_examples/intar5.png" width="290"/>
 </p>
 
+## Disclaimer
+**This software is published for academic and non-commercial use only.**
+
 ## Setup
 ### Dependencies
 * [Tensorflow](https://www.tensorflow.org/)
