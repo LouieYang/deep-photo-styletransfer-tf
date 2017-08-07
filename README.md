@@ -96,7 +96,7 @@ Here are more results from tensorflow algorithm (from left to right are input, s
 
 ## Acknowledgement
 
-* This work was done when Yang Liu was a research intern at *Microsoft Visual Perception Laboratory of Zhejiang University* and *Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies*, under the supervision of [Prof. Mingli Song](http://person.zju.edu.cn/en/msong) and [Yongcheng Jing](http://yongchengjing.com/).
+* This work was done when Yang Liu was a research intern at *Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies*, under the supervision of [Prof. Mingli Song](http://person.zju.edu.cn/en/msong) and [Yongcheng Jing](http://yongchengjing.com/).
 
 * Our tensorflow implementation basically follows the [torch code](https://github.com/luanfujun/deep-photo-styletransfer).
 
@@ -109,7 +109,7 @@ If you find this code useful for your research, please cite:
   author = {Yang Liu},
   title = {deep-photo-style-transfer-tf},
   publisher = {GitHub},
-  organization={Microsoft Visual Perception Laboratory & Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies},
+  organization={Alibaba-Zhejiang University Joint Research Institute of Frontier Technologies},
   year = {2017},
   howpublished = {\url{https://github.com/LouieYang/deep-photo-styletransfer-tf}}
 }
