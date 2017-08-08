@@ -1,16 +1,19 @@
-from __future__ import division
+from __future__ import division, print_function
 
 import numpy as np
 import tensorflow as tf
-import scipy.misc
 from vgg19.vgg import Vgg19
 from PIL import Image
 import time
-from closed_form_matting import *
-from operator import mul
+from closed_form_matting import getLaplacian
 import math
 from functools import partial
 import copy
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
 
 VGG_MEAN = [103.939, 116.779, 123.68]
 
@@ -55,11 +58,11 @@ def load_seg(content_seg_path, style_seg_path, content_shape, style_shape):
             mask_g = (seg[:, :, 1] > 0.9).astype(np.uint8)
             mask_b = (seg[:, :, 2] < 0.1).astype(np.uint8)
         elif color_str == "GREY":
-            mask_r = np.multiply((seg[:, :, 0] > 0.4).astype(np.uint8), \
+            mask_r = np.multiply((seg[:, :, 0] > 0.4).astype(np.uint8),
                                  (seg[:, :, 0] < 0.6).astype(np.uint8))
-            mask_g = np.multiply((seg[:, :, 1] > 0.4).astype(np.uint8), \
+            mask_g = np.multiply((seg[:, :, 1] > 0.4).astype(np.uint8),
                                  (seg[:, :, 1] < 0.6).astype(np.uint8))
-            mask_b = np.multiply((seg[:, :, 2] > 0.4).astype(np.uint8), \
+            mask_b = np.multiply((seg[:, :, 2] > 0.4).astype(np.uint8),
                                  (seg[:, :, 2] < 0.6).astype(np.uint8))
         elif color_str == "LIGHT_BLUE":
             mask_r = (seg[:, :, 0] < 0.1).astype(np.uint8)
@@ -122,8 +125,8 @@ def style_loss(CNN_structure, const_layers, var_layers, content_segs, style_segs
                 style_segs[i] = tf.nn.avg_pool(tf.pad(style_segs[i], [[0, 0], [1, 1], [1, 1], [0, 0]], "CONSTANT"), \
                 ksize=[1, 3, 3, 1], strides=[1, 1, 1, 1], padding='VALID')
 
-        if layer_name == var_layers[layer_index].name[var_layers[layer_index].name.find("/") + 1: ]:
-            print "Setting up style layer: <{}>".format(layer_name)
+        if layer_name == var_layers[layer_index].name[var_layers[layer_index].name.find("/") + 1:]:
+            print("Setting up style layer: <{}>".format(layer_name))
             const_layer = const_layers[layer_index]
             var_layer = var_layers[layer_index]
 
@@ -176,12 +179,12 @@ min_loss, best_image = float("inf"), None
 def print_loss(args, loss_content, loss_styles_list, loss_tv, loss_affine, overall_loss, output_image):
     global iter_count, min_loss, best_image
     if iter_count % args.print_iter == 0:
-        print 'Iteration {} / {}\n\tContent loss: {}'.format(iter_count, args.max_iter, loss_content)
+        print('Iteration {} / {}\n\tContent loss: {}'.format(iter_count, args.max_iter, loss_content))
         for j, style_loss in enumerate(loss_styles_list):
-            print '\tStyle {} loss: {}'.format(j + 1, style_loss)
-        print '\tTV loss: {}'.format(loss_tv)
-        print '\tAffine loss: {}'.format(loss_affine)
-        print '\tTotal loss: {}'.format(overall_loss - loss_affine)
+            print('\tStyle {} loss: {}'.format(j + 1, style_loss))
+        print('\tTV loss: {}'.format(loss_tv))
+        print('\tAffine loss: {}'.format(loss_affine))
+        print('\tTotal loss: {}'.format(overall_loss - loss_affine))
 
     if overall_loss < min_loss:
         min_loss, best_image = overall_loss, output_image
@@ -193,7 +196,7 @@ def print_loss(args, loss_content, loss_styles_list, loss_tv, loss_affine, overa
 
 def stylize(args, Matting):
     config = tf.ConfigProto()
-    config.gpu_options.allow_growth=True
+    config.gpu_options.allow_growth = True
     sess = tf.Session(config=config)
 
     start = time.time()
@@ -215,7 +218,7 @@ def stylize(args, Matting):
 
     if not args.init_image_path:
         if Matting:
-            print ("<WARNING>: Apply Matting with random init")
+            print("<WARNING>: Apply Matting with random init")
         init_image = np.random.randn(1, content_height, content_width, 3).astype(np.float32) * 0.0001
     else:
         init_image = np.expand_dims(rgb2bgr(np.array(Image.open(args.init_image_path).convert("RGB"), dtype=np.float32)).astype(np.float32), 0)
@@ -261,7 +264,7 @@ def stylize(args, Matting):
     if Matting:
         loss_affine = affine_loss(input_image_plus, M, args.affine_weight)
     else:
-        loss_affine = tf.constant(0.00001) # junk value
+        loss_affine = tf.constant(0.00001)  # junk value
 
     # Total Variational Loss
     loss_tv = total_variation_loss(input_image, float(args.tv_weight))
@@ -307,13 +310,13 @@ def stylize(args, Matting):
                 train_op, loss_content, loss_styles_list, loss_tv, loss_affine, VGGNetLoss, input_image_plus
             ])
             if i % args.print_iter == 0:
-                print 'Iteration {} / {}\n\tContent loss: {}'.format(i, args.max_iter, loss_content_)
+                print('Iteration {} / {}\n\tContent loss: {}'.format(i, args.max_iter, loss_content_))
                 for j, style_loss_ in enumerate(loss_styles_list_):
-                    print '\tStyle {} loss: {}'.format(j + 1, style_loss_)
-                print '\tTV loss: {}'.format(loss_tv_)
+                    print('\tStyle {} loss: {}'.format(j + 1, style_loss_))
+                print('\tTV loss: {}'.format(loss_tv_))
                 if Matting:
-                    print '\tAffine loss: {}'.format(loss_affine_)
-                print '\tTotal loss: {}'.format(overall_loss_ - loss_tv_)
+                    print('\tAffine loss: {}'.format(loss_affine_))
+                print('\tTotal loss: {}'.format(overall_loss_ - loss_tv_))
 
             if overall_loss_ < min_loss:
                 min_loss, best_image = overall_loss_, output_image_
