@@ -189,8 +189,8 @@ def print_loss(args, loss_content, loss_styles_list, loss_tv, loss_affine, overa
     if overall_loss < min_loss:
         min_loss, best_image = overall_loss, output_image
 
-    if iter_count % args.save_iter == 0:
-        save_result(best_image[:, :, ::-1], 'out_iter_{}.png'.format(iter_count + args.max_iter))
+    if iter_count % args.save_iter == 0 and iter_count != 0:
+        save_result(best_image[:, :, ::-1], args.serial + 'out_iter_{}.png'.format(iter_count))
 
     iter_count += 1
 
@@ -282,7 +282,6 @@ def stylize(args, Matting):
 
         best_result = copy.deepcopy(best_image)
         global min_loss, best_image, iter_count
-        iter_count = 0
         min_loss, best_image = float("inf"), None
         return best_result
     else:
@@ -322,7 +321,7 @@ def stylize(args, Matting):
                 min_loss, best_image = overall_loss_, output_image_
 
             if i % args.save_iter == 0 and i != 0:
-                save_result(best_image[:, :, ::-1], 'out_iter_{}.png'.format(i))
+                save_result(best_image[:, :, ::-1], args.serial + 'out_iter_{}.png'.format(i))
 
         return best_image
 

@@ -17,6 +17,8 @@ parser.add_argument("--init_image_path",    dest='init_image_path',     nargs='?
                     help="Path to init image", default="")
 parser.add_argument("--output_image",       dest='output_image',        nargs='?',
                     help='Path to output the stylized image', default="best_stylized.png")
+parser.add_argument("--serial",             dest='serial',              nargs='?',
+                    help='Path to save the serial out_iter_X.png', default='./')
 
 # Training Optimizer Options
 parser.add_argument("--max_iter",           dest='max_iter',            nargs='?', type=int,
@@ -82,11 +84,12 @@ def main():
             result = Image.fromarray(np.uint8(np.clip(best_ * 255., 0, 255.)))
             result.save(args.output_image)
     elif args.style_option == 2:
+        args.max_iter = 2 * args.max_iter
         tmp_image_bgr = stylize(args, False)
         result = Image.fromarray(np.uint8(np.clip(tmp_image_bgr[:, :, ::-1], 0, 255.0)))
-        result.save("./tmp_result.png")
+        result.save(args.serial + "tmp_result.png")
 
-        args.init_image_path = "./tmp_result.png"
+        args.init_image_path = args.serial + "tmp_result.png"
         best_image_bgr = stylize(args, True)
         if not args.apply_smooth:
             result = Image.fromarray(np.uint8(np.clip(best_image_bgr[:, :, ::-1], 0, 255.0)))
