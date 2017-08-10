@@ -87,9 +87,9 @@ def main():
         args.max_iter = 2 * args.max_iter
         tmp_image_bgr = stylize(args, False)
         result = Image.fromarray(np.uint8(np.clip(tmp_image_bgr[:, :, ::-1], 0, 255.0)))
-        result.save(args.serial + "tmp_result.png")
+        args.init_image_path = os.path.join(args.serial, "tmp_result.png")
+        result.save(args.init_image_path)
 
-        args.init_image_path = args.serial + "tmp_result.png"
         best_image_bgr = stylize(args, True)
         if not args.apply_smooth:
             result = Image.fromarray(np.uint8(np.clip(best_image_bgr[:, :, ::-1], 0, 255.0)))
