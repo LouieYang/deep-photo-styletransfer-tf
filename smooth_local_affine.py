@@ -345,17 +345,17 @@ def smooth_local_affine(output_, input_, epsilon, patch, h, w, f_r, f_e):
 
 	_best_local_affine_kernel(
         drv.InOut(output_), drv.InOut(input_), drv.InOut(affine_model),
-        np.int32(h), np.int32(w), np.float32(epsilon), np.int32(radius), block=(256, 1, 1), grid=((h * w) / 256 + 1, 1)
+        np.int32(h), np.int32(w), np.float32(epsilon), np.int32(radius), block=(256, 1, 1), grid=(int((h * w) / 256 + 1), 1)
     )
 
 	_bilateral_smooth_kernel(
 		drv.InOut(affine_model), drv.InOut(filtered_affine_model),
 		drv.InOut(input_), np.int32(h), np.int32(w), np.int32(f_r), np.float32(sigma1), np.float32(sigma2),
-		block=(256, 1, 1), grid=((h * w) / 256 + 1, 1)
+		block=(256, 1, 1), grid=(int((h * w) / 256 + 1), 1)
 	)
 	_reconstruction_best_kernel(
 		drv.InOut(input_), drv.InOut(filtered_affine_model), drv.InOut(filtered_best_output),
-		np.int32(h), np.int32(w), block=(256, 1, 1), grid=((h * w) / 256 + 1, 1)
+		np.int32(h), np.int32(w), block=(256, 1, 1), grid=(int((h * w) / 256 + 1), 1)
 	)
 	return filtered_best_output
 
