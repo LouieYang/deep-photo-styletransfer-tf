@@ -281,8 +281,8 @@ def stylize(args, Matting):
         print_loss_partial = partial(print_loss, args)
         optimizer.minimize(sess, fetches=[loss_content, loss_styles_list, loss_tv, loss_affine, overall_loss, input_image_plus], loss_callback=print_loss_partial)
 
-        best_result = copy.deepcopy(best_image)
         global min_loss, best_image, iter_count
+        best_result = copy.deepcopy(best_image)
         min_loss, best_image = float("inf"), None
         return best_result
     else:
